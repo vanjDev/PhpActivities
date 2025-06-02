@@ -4,22 +4,18 @@ function calculateAverage($scores) {
 }
 
 $name = $_POST['name'];
+$subjects = $_POST['subject'];
+$scores = $_POST['score'];
 
-$subjects = [
-    $_POST['subject1'] => $_POST['score1'],
-    $_POST['subject2'] => $_POST['score2'],
-    $_POST['subject3'] => $_POST['score3']
-];
-
-$scores = array_values($subjects);
 $average = calculateAverage($scores);
 
 // Output
 echo "<h2>Student Report</h2>";
 echo "Name: " . htmlspecialchars($name) . "<br><br>";
 
-foreach ($subjects as $subject => $score) {
-    echo "Subject: " . htmlspecialchars($subject) . " - Score: " . htmlspecialchars($score) . "<br>";
+for ($i = 0; $i < count($subjects); $i++) {
+    echo "Subject: " . htmlspecialchars($subjects[$i]) . 
+         " - Score: " . htmlspecialchars($scores[$i]) . "<br>";
 }
 
 echo "<br><strong>Average Score:</strong> " . round($average, 2);
