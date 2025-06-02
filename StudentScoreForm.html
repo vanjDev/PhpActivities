@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Score Form</title>
-</head>
-<body>
-    <h2>Enter Student Scores</h2>
-    <form action="score_calculate.php" method="post">
-        Name: <input type="text" name="name" required><br><br>
-        
-        Subject 1: <input type="text" name="subject1" required><br>
-        Score 1: <input type="number" name="score1" required><br><br>
-        
-        Subject 2: <input type="text" name="subject2" required><br>
-        Score 2: <input type="number" name="score2" required><br><br>
-        
-        Subject 3: <input type="text" name="subject3" required><br>
-        Score 3: <input type="number" name="score3" required><br><br>
-        
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
+<form action="score_calculate.php" method="post">
+    Name: <input type="text" name="name" required><br><br>
+
+    Subject 1: <input type="text" name="subject[]" required><br>
+    Score 1: <input type="number" name="score[]" required><br><br>
+
+    Subject 2: <input type="text" name="subject[]" required><br>
+    Score 2: <input type="number" name="score[]" required><br><br>
+
+    Subject 3: <input type="text" name="subject[]" required><br>
+    Score 3: <input type="number" name="score[]" required><br><br>
+
+    <input type="submit" value="Submit">
+</form>
