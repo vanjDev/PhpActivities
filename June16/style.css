@@ -1,0 +1,43 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 22px 100px;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.story {
+  padding: 30px;
+  text-align: center;
+}
+
+.story img {
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  margin-bottom: 20px;
+}
