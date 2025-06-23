@@ -1,12 +1,16 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Set cookies with staggered delays
-    setcookie("firstname", $_POST["firstname"], time() + 10);    // visible after 10 seconds
-    setcookie("middlename", $_POST["middlename"], time() + 20);  // visible after 20 seconds
-    setcookie("lastname", $_POST["lastname"], time() + 30);      // visible after 30 seconds
+    $timeNow = time();
+    setcookie("firstname", $_POST["firstname"], $timeNow + 60);
+    setcookie("firstname_time", $timeNow, $timeNow + 60);
 
-    // Redirect to self to prevent form resubmission
-    header("Location: cookieDelayForm.php");
+    setcookie("middlename", $_POST["middlename"], $timeNow + 60);
+    setcookie("middlename_time", $timeNow, $timeNow + 60);
+
+    setcookie("lastname", $_POST["lastname"], $timeNow + 60);
+    setcookie("lastname_time", $timeNow, $timeNow + 60);
+
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 ?>
@@ -14,30 +18,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Staggered Cookie Info</title>
+  <title>Delayed Cookie Display</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f7fb;
+      font-family: Arial;
+      background-color: #f4f9ff;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-
     .container {
       background: white;
-      padding: 30px;
+      padding: 25px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
       width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
     input[type="text"], input[type="submit"] {
       width: 100%;
       padding: 10px;
@@ -45,21 +42,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       border-radius: 5px;
       border: 1px solid #ccc;
     }
-
     input[type="submit"] {
-      background-color: #3498db;
+      background: #3498db;
       color: white;
       font-weight: bold;
       border: none;
       cursor: pointer;
     }
-
-    .cookie-result {
+    .result {
       margin-top: 20px;
+      background-color: #e9f3ff;
       padding: 15px;
-      background-color: #eef7ff;
-      border-left: 4px solid #2980b9;
-      border-radius: 6px;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -67,31 +61,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
   <h2>Enter Personal Information</h2>
-  <form method="POST" action="">
+  <form method="POST">
     <input type="text" name="firstname" placeholder="First Name" required>
     <input type="text" name="middlename" placeholder="Middle Name" required>
     <input type="text" name="lastname" placeholder="Last Name" required>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Set Cookies">
   </form>
 
-  <div class="cookie-result">
+  <div class="result">
     <?php
-    if (isset($_COOKIE["firstname"])) {
-        echo "✅ First Name: " . htmlspecialchars($_COOKIE["firstname"]) . "<br>";
+    $now = time();
+
+    // First name after 10 seconds
+    if (isset($_COOKIE["firstname_time"]) && $now - $_COOKIE["firstname_time"] >= 10) {
+        echo "✅ First Name: " . $_COOKIE["firstname"] . "<br>";
     } else {
-        echo "⌛ First Name cookie will appear after 10 seconds.<br>";
+        echo "⌛ First Name will be shown after 10 seconds.<br>";
     }
 
-    if (isset($_COOKIE["middlename"])) {
-        echo "✅ Middle Name: " . htmlspecialchars($_COOKIE["middlename"]) . "<br>";
+    // Middle name after 20 seconds
+    if (isset($_COOKIE["middlename_time"]) && $now - $_COOKIE["middlename_time"] >= 20) {
+        echo "✅ Middle Name: " . $_COOKIE["middlename"] . "<br>";
     } else {
-        echo "⌛ Middle Name cookie will appear after 20 seconds.<br>";
+        echo "⌛ Middle Name will be shown after 20 seconds.<br>";
     }
 
-    if (isset($_COOKIE["lastname"])) {
-        echo "✅ Last Name: " . htmlspecialchars($_COOKIE["lastname"]) . "<br>";
+    // Last name after 30 seconds
+    if (isset($_COOKIE["lastname_time"]) && $now - $_COOKIE["lastname_time"] >= 30) {
+        echo "✅ Last Name: " . $_COOKIE["lastname"] . "<br>";
     } else {
-        echo "⌛ Last Name cookie will appear after 30 seconds.<br>";
+        echo "⌛ Last Name will be shown after 30 seconds.<br>";
     }
     ?>
   </div>
