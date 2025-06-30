@@ -25,7 +25,7 @@ $_SESSION["color5"] = $_POST["color5"];
     }
 
     .result-container {
-      background-color: #ffffff;
+      background-color:rgb(32, 32, 32);
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
@@ -34,7 +34,7 @@ $_SESSION["color5"] = $_POST["color5"];
 
     h2 {
       text-align: center;
-      color: #2c3e50;
+      color:rgb(255, 255, 255);
       margin-bottom: 25px;
     }
 
@@ -51,7 +51,7 @@ $_SESSION["color5"] = $_POST["color5"];
 <body>
 
 <div class="result-container">
-  <h2>ResultColors.php</h2>
+  <h2>Favorite Colors</h2>
   <div class="color-item">My Favorite Color 1: <?= htmlspecialchars($_SESSION["color1"]) ?></div>
   <div class="color-item">My Favorite Color 2: <?= htmlspecialchars($_SESSION["color2"]) ?></div>
   <div class="color-item">My Favorite Color 3: <?= htmlspecialchars($_SESSION["color3"]) ?></div>
